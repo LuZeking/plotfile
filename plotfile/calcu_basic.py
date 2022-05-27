@@ -1,3 +1,4 @@
+from typing import List
 import numpy as np
 import time
 
@@ -21,6 +22,24 @@ def box_iou(boxes1, boxes2):
     union_areas = areas1[:, None] + areas2 - inter_areas
     return inter_areas / union_areas
 
+def compute_d_prime(category_avg:List, category_var:List, non_category_avg:List, non_category_var:List):
+    """D prime calculate the difference (in standard deviation units) between the means of  2 distribution，
+        to measure the sensitivity or discriminability
+
+    Args:
+        category_avg (_type_): avg list of distribution_series1
+        category_var (_type_): var list of distribution_series1
+        non_category_avg (_type_):avg list of distribution_series2 
+        non_category_var (_type_): avg list of distribution_series2
+
+    Returns:
+        D prime value
+    """    
+    nom = [category_avg[i] - non_category_avg[i] for i in np.arange(len(category_avg))]
+    denom = [np.sqrt((category_var[i] + non_category_var[i]) / 2) for i in np.arange(len(category_avg))]
+    with np.errstate(divide='ignore', invalid='ignore'):
+        d_prime = [np.nan_to_num(nom[i] / denom[i]) for i in np.arange(len(category_avg))]
+    return d_prime
 
 class Timer:  #@save
     """record multi time """

@@ -62,7 +62,7 @@ def plot(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
 
 def plot_with_errorbands(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
          ylim=None, xscale='linear', yscale='linear',
-         fmts=('b-', 'g--', 'm-.'), figsize=(3.5, 2.5), axes=None, save_path = None,errorbands= None,set_colors = None):
+         fmts=('b-', 'g--', 'm-.'), figsize=(3.5, 2.5), axes=None, save_path = None,errorbands= None,set_colors = None,):
     """Plot data points.
 
     Defined in :numref:`sec_calculus`"""
@@ -110,8 +110,7 @@ def plot_with_errorbands(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=
 
 
 def show_pair_hist(legend, xlabel, ylabel, xlist, ylist):
-    # """Plot the histogram for pairs."""
-
+  
     d2l.set_figsize()
     _, _, patches = d2l.plt.hist(
         [[len(l) for l in xlist], [len(l) for l in ylist]])
