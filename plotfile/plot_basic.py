@@ -59,54 +59,7 @@ def plot(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
     if save_path:
         d2l.plt.savefig(save_path, bbox_inches = 'tight',facecolor="white", transparent=True)
 
-
-def plot_with_errorbands(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
-         ylim=None, xscale='linear', yscale='linear',
-         fmts=('b-', 'g--', 'm-.'), figsize=(3.5, 2.5), axes=None, save_path = None,errorbands= None,set_colors = None,):
-    """Plot data points.
-
-    Defined in :numref:`sec_calculus`"""
-    if legend is None:
-        legend = []
-
-    d2l.set_figsize(figsize)
-    axes = axes if axes else d2l.plt.gca()
-
-    # Return True if `X` (tensor or list) has 1 axis
-    def has_one_axis(X):
-        return (hasattr(X, "ndim") and X.ndim == 1 or isinstance(X, list)
-                and not hasattr(X[0], "__len__"))
-
-    if has_one_axis(X):
-        X = [X]
-    if Y is None:
-        X, Y = [[]] * len(X), X
-    elif has_one_axis(Y):
-        Y = [Y]
-    if len(X) != len(Y):
-        X = X * len(Y)
-    axes.cla()
-    for x, y, fmt in zip(X, Y, fmts):
-        if len(x):
-            axes.plot(x, y, fmt)
-        else:
-            axes.plot(y, fmt)
-    if errorbands:
-        for x, y, fmt,errorband in zip(X, Y, fmts,errorbands):
-            if len(x):
-            
-
-                if errorband:
-                    y_lower, y_upper = errorband [0],errorband[1]
-                    axes.fill_between(x, y_lower, y_upper, alpha=0.2, color = ''.join(x for x in fmt if x.isalpha())) # , color='tab:green'
-
-                axes.plot(x, y, fmt) # ,color = color_name
-            else:
-                axes.plot(y, fmt)
-
-    d2l.set_axes(axes, xlabel, ylabel, xlim, ylim, xscale, yscale, legend)
-    if save_path:
-        d2l.plt.savefig(save_path, bbox_inches = 'tight',facecolor="white", transparent=True)
+c
 
 
 def show_pair_hist(legend, xlabel, ylabel, xlist, ylist):
@@ -143,25 +96,25 @@ def show_multi_hist(legend, xlabel, ylabel, hist_data_list, title = None, savefi
         plot.show_multi_hist(legend, xlabel, ylabel, hist_data_list, title = title, savefig = False, save_path="")
 
     """
-    
-    d2l.set_figsize(figsize=(8,6))  # 3.5, 2.5
-    for i in range(len(hist_data_list)):
-        data = hist_data_list[i]
-        if bins:
-            d2l.plt.hist(data, bins = bins, alpha=0.5)
-        else:
-            d2l.plt.hist(data, alpha=0.5) # bins=100, , label= legend[i]
+    with plt.style.context(['science' ,'no-latex']):
+        d2l.set_figsize(figsize=(8,6))  # 3.5, 2.5
+        for i in range(len(hist_data_list)):
+            data = hist_data_list[i]
+            if bins:
+                d2l.plt.hist(data, bins = bins, alpha=0.5)
+            else:
+                d2l.plt.hist(data, alpha=0.5) # bins=100, , label= legend[i]
 
-    
-    d2l.plt.xlabel(xlabel)
-    d2l.plt.ylabel(ylabel)    
-    d2l.plt.legend(legend)
-    d2l.plt.ylim(0,140)
+        
+        d2l.plt.xlabel(xlabel)
+        d2l.plt.ylabel(ylabel)    
+        d2l.plt.legend(legend)
+        d2l.plt.ylim(0,140)
 
-    if title:
-        d2l.plt.title(title)
-    if savefig:
-        d2l.plt.savefig(save_path + "_".join(title.split())+".png") # .svg
+        if title:
+            d2l.plt.title(title)
+        if savefig:
+            d2l.plt.savefig(save_path + "_".join(title.split())+".png") # .svg
 
 def show_images(imgs, num_rows, num_cols, titles=None, scale=1.5):
     """Plot a list of images.
@@ -214,9 +167,9 @@ def show_heatmaps_inline(matrices_list,rows_num, cols_num, camp='viridis',figure
         category_labels (_type_, optional): _description_. Defaults to None.
         save_path (_type_, optional): _description_. Defaults to None.
     """    
-    import numpy as np
     import d2l.tensorflow as d2l
     import matplotlib.pyplot as plt
+    import numpy as np
     from matplotlib import colors   
 
     vmin, vmax = np.min(matrices_list), np.max(matrices_list)
@@ -263,9 +216,9 @@ def show_multi_heatmaps(matrices_list,rows_num, cols_num, camp='viridis',figure_
         category_labels (_type_, optional): _description_. Defaults to None.
         save_path (_type_, optional): _description_. Defaults to None.
     """    
-    import numpy as np
     import d2l.tensorflow as d2l
     import matplotlib.pyplot as plt
+    import numpy as np
     from matplotlib import colors   
 
     vmin, vmax = np.min(matrices_list), np.max(matrices_list)
