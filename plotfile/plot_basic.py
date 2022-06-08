@@ -59,7 +59,7 @@ def plot(X, Y=None, xlabel=None, ylabel=None, legend=None, xlim=None,
     if save_path:
         d2l.plt.savefig(save_path, bbox_inches = 'tight',facecolor="white", transparent=True)
 
-c
+
 
 
 def show_pair_hist(legend, xlabel, ylabel, xlist, ylist):
