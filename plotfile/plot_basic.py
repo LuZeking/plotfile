@@ -1,5 +1,7 @@
 # from turtle import color
 from d2l import tensorflow as d2l
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 #! more in d2l: show_images, show_heat_maps,plot,
 
@@ -110,6 +112,10 @@ def show_multi_hist(legend, xlabel, ylabel, hist_data_list, title = None, savefi
         d2l.plt.ylabel(ylabel)    
         d2l.plt.legend(legend)
         d2l.plt.ylim(0,140)
+        
+        sns.despine()
+        d2l.plt.tick_params(right=False,  top=False) 
+        d2l.plt.tick_params(right=False, which='minor', top=False)
 
         if title:
             d2l.plt.title(title)

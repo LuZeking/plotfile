@@ -1,9 +1,12 @@
+import sys
+sys.path.append("..")
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from colors import Colors
+from .colors import Colors
 color = Colors.light_colors()  # Setting color style
 
 def barplot(save_path=None,title=None, *arg,**kwarg):
