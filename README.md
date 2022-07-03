@@ -1,4 +1,4 @@
-# plotfile: *P*lotting *f*or *I*nfinite *Le*arning Science
+# plotfile: *P*lotting *f*or *I*nfinite *Le*arning in Science
 
 
 
